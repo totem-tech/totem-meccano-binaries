@@ -1,0 +1,37 @@
+# Totem Meccano Binaries Repository
+
+This repo contains pre-compiled binaries for quickly setting up a Totem Meccano node.
+
+Select the version for your operating system and simply execute the binary.
+
+## Instructions
+
+Clone the repo
+
+    git clone https://gitlab.com/totem-tech/totem-meccano-binaries.git
+
+Execute the version you need. For exampl this is the binary version `1.1.9` compiled for `Ubuntu 18.04`:
+
+    ./totem-meccano-binaries/ubuntu-18-04/v1.1.9/totem-meccano
+
+## Known issues
+
+We have a known issue that later versions do not often connect to the network directly. In that case follow these instructions after you have tried and been unsuccessful:
+
+Clean up the data directory completely
+    
+    rm -r .local/share/totem-meccano
+
+This will remove all the key files chain data and peer node registries.
+
+Execute the version `1.1.6` binary temporarily just until you see a number of peers on the network, and a large number of blocks are seen in `target` in the console. 
+
+    ./totem-meccano-binaries/ubuntu-18-04/v1.1.6/totem-meccano
+
+Then stop the node, and either execute the latest version of the binary (currently `1.1.9`) 
+
+    ./totem-meccano-binaries/ubuntu-18-04/v1.1.9/totem-meccano
+
+What this workaround appears to do is correctly identify the bootnodes and store them in the peer nodes registry as well as syncing the genesis block from the bootnodes.  
+
+The issue is that specifying the bootnodes manually does not work even when executing for the first time.
